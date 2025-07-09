@@ -126,7 +126,7 @@ with pikepdf.open(temp_pdf_path) as pdf:
 
     pdf.save(output_file)
 
-    # Hapus temp file
-    os.remove(temp_pdf_path)
-
+# Hapus temp file
+os.remove(temp_pdf_path)
+    
 print(f"🎉 Selesai! File output: {output_file}")
