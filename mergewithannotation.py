@@ -72,8 +72,8 @@ def main():
 
     width, height = A4
     line_height = 24
-    margin_atas = 60  # margin atas di halaman TOC selain pertama
-    header_y = height - 70  # posisi header di halaman pertama
+    margin_atas = 56  # margin atas di halaman TOC selain pertama
+    header_y = height - 66  # posisi header di halaman pertama
 
     # Hitung berapa banyak entri TOC per halaman
     entries_first_page = 30
