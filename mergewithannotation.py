@@ -31,12 +31,19 @@ def draw_toc_header(can, width, y_pos):
     return y_pos
 
 def draw_toc_entry(can, title, page_number, width, text_y):
+    max_title_width = width - 50 - 50 - can.stringWidth(str(page_number), "Helvetica", 12) - 30
+    real_title = title
+    while can.stringWidth(real_title, "Helvetica", 12) > max_title_width and len(real_title) > 3:
+        real_title = real_title[:-1]
+    if real_title != title:
+        real_title = real_title.rstrip() + "…"
+
     can.setFillColor(HexColor("#1a73e8"))
-    can.drawString(50, text_y, title)
+    can.drawString(50, text_y, real_title)
 
     can.setStrokeColor(HexColor("#000000"))
     can.setDash(1, 2)
-    text_width = can.stringWidth(title, "Helvetica", 12)
+    text_width = can.stringWidth(real_title, "Helvetica", 12)
     start_x = 50 + text_width + 5
     end_x = width - 50 - can.stringWidth(str(page_number), "Helvetica", 12) - 10
     line_y = text_y + 3
@@ -64,13 +71,13 @@ def main():
     print(f"🔃 Menggabungkan semua PDF ..")
 
     width, height = A4
-    line_height = 25
-    margin_atas = 110  # margin atas di halaman TOC selain pertama
+    line_height = 24
+    margin_atas = 60  # margin atas di halaman TOC selain pertama
     header_y = height - 70  # posisi header di halaman pertama
 
     # Hitung berapa banyak entri TOC per halaman
-    entries_first_page = 28
-    entries_next_pages = 28
+    entries_first_page = 30
+    entries_next_pages = 32
 
     # Hitung jumlah halaman tiap file PDF
     num_pages_list = []
